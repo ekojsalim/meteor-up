@@ -33,8 +33,9 @@ if [ "$USE_LOCAL_MONGO" == "1" ]; then
 else
   docker run \
     -d \
+    --link=mongodb:mongodb \
     --restart=always \
-    --publish=$PORT:80 \
+    --publish=0.0.0.0:$PORT:80 \
     --volume=$BUNDLE_PATH:/bundle \
     --hostname="$HOSTNAME-$APPNAME" \
     --env-file=$ENV_FILE \
